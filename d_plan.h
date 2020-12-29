@@ -1,6 +1,7 @@
 #pragma once
 
 #include <optimizer/planmain.h>
+#include <optimizer/restrictinfo.h>
 
 static ForeignScan* dir_fdw_plan(
   PlannerInfo* p,
@@ -11,6 +12,7 @@ static ForeignScan* dir_fdw_plan(
   List*        s,
   Plan*        outer
 ){
+  s = extract_actual_clauses(s, false);
   return make_foreignscan(
     l,
     s,

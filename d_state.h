@@ -11,4 +11,6 @@ typedef struct DirFdwExecState {
   const char* dirname;
   int fd;
   DIR* d;
+
+  u8n d_type;
 } DirFdwExecState;

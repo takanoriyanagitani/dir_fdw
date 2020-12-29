@@ -9,7 +9,7 @@ CREATE FOREIGN TABLE IF NOT EXISTS dt(
   dirname '/home'
 );
 
-SELECT * FROM dt;
+SELECT * FROM dt WHERE d_type=4;
 
 DROP FOREIGN TABLE dt;
 DROP SERVER        dsv;

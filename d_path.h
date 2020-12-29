@@ -26,7 +26,7 @@ static void dir_fdw_path(PlannerInfo* p, RelOptInfo* r, Oid o){
     start,
     total,
     NIL, // no pathkeys
-    r->lateral_relids,
+    NULL,
     NULL, // no extra plan
     NIL   // 
   ));
