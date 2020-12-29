@@ -2,6 +2,13 @@ cmake_minimum_required(VERSION 3.0)
 
 project(dir_fdw)
 
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE "Release")
+endif()
+
+set(CMAKE_C_FLAGS_RELEASE "-O3")
+set(CMAKE_C_FLAGS_DEBUG   "-O0 -g -coverage")
+
 add_compile_options(
   -mavx2
   -ftree-vectorize

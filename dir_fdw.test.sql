@@ -3,18 +3,13 @@ CREATE SERVER        IF NOT EXISTS dsv FOREIGN DATA WRAPPER dir_fdw;
 
 CREATE FOREIGN TABLE IF NOT EXISTS dt(
   d_ino    BIGINT,
-  d_type   CHAR,
-  d_name   bytea,
-  d_mode   BIGINT,
-  d_nlink  INTEGER,
-  d_user   BIGINT,
-  d_group  BIGINT,
-  d_size   BIGINT,
-  d_bsize  BIGINT,
-  d_bcnt   BIGINT
-) SERVER dsv;
+  d_type   SMALLINT,
+  d_name   TEXT
+) SERVER dsv OPTIONS(
+  dirname '/home'
+);
 
---SELECT * FROM dt WHERE k='hw';
+SELECT * FROM dt;
 
 DROP FOREIGN TABLE dt;
 DROP SERVER        dsv;
