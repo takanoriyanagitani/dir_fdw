@@ -1,0 +1,17 @@
+FROM postgres:14.12-alpine3.19
+RUN apk update --no-cache
+RUN apk upgrade --no-cache
+RUN apk add cmake --no-cache
+RUN apk add make --no-cache
+RUN apk add clang --no-cache
+
+WORKDIR /dir_fdw.d
+COPY --link ./CMakeLists.txt ./
+COPY --link ./*.h ./
+COPY --link ./*.c ./
+COPY --link ./*.sql ./
+COPY --link ./*.control ./
+WORKDIR /dir_fdw.d/build
+RUN cmake ..
+ARG NUM_CPU_CORES=2
+RUN make -j${NUM_CPU_CORES}
