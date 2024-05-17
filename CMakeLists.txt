@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 project(dir_fdw)
 
@@ -16,9 +16,11 @@ add_compile_options(
   -Werror
 )
 
+find_package(PostgreSQL REQUIRED COMPONENTS Server)
+
 add_library(dir_fdw SHARED dir_fdw.c)
 set_property(TARGET dir_fdw PROPERTY POSITION_INDEPENDENT_CODE ON)
 set_property(TARGET dir_fdw PROPERTY PREFIX "")
 target_include_directories(dir_fdw PRIVATE
-  /usr/include/postgresql/12/server
+  ${PostgreSQL_TYPE_INCLUDE_DIR}
 )
